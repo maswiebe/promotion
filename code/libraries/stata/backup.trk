@@ -1,0 +1,322 @@
+* 00000006
+*! version 1.0.0
+* Do not erase or edit this file
+* It is used by Stata to track the ado and help
+* files you have installed.
+
+S http://fmwww.bc.edu/repec/bocode/t
+N tsspell.pkg
+D 18 Jan 2024
+U 1
+d 'TSSPELL': module for identification of spells or runs in time series
+d 
+d  tsspell examines the data, which must be tsset time series, to
+d identify spells or runs, which are contiguous sequences defined
+d by some condition. tsspell generates new variables indicating
+d distinct spells, giving sequence in spell, and indicating whether
+d observations occur at the end of spells. If the data are panel
+d data, all operations are automatically performed separately
+d within panels.
+d 
+d KW: spells
+d KW: runs
+d KW: time series
+d KW: tsset
+d 
+d Requires: Stata version 7.0
+d 
+d Distribution-Date: 20211030
+d 
+d Author: Nicholas J. Cox, Durham University
+d Support: email N.J.Cox@@durham.ac.uk
+d 
+f t/tsspell.ado
+f t/tsspell.sthlp
+e
+S http://fmwww.bc.edu/repec/bocode/b
+N blindschemes.pkg
+D 18 Jan 2024
+U 2
+d 'BLINDSCHEMES': module to provide graph schemes sensitive to color vision deficiency
+d 
+d  While Stata's computational capabilities have intensively
+d increased over the last decade, the quality of its default figure
+d schemes is still a matter of debate amongst users. Clearly some
+d of the arguments speaking against Stata figures are subject to
+d individual taste, but others are not, such as for instance:
+d horizontal labelling, unnecessary background tinting, missing
+d gridlines, oversized markers. The two schemes introduced here
+d attempt to solve the major shortcomings of Stata's default figure
+d schemes.  The schemes come with 21 new colors, of which seven
+d colors are distinguishable for people suffering from color
+d blindness.  This package provides users with four new figure
+d schemes: plotplain (plain and simple plotting environment, avoids
+d chartjunk); plotplainblind (plain and simple plotting
+d environment, avoids chartjunk + colorblind friendly); plottig
+d (replicates R ggplot in most regards); plottigblind (replicates R
+d ggplot in most regards + colorblind friendly)
+d 
+d KW: graphics
+d KW: schemes
+d KW: color vision deficiency
+d KW: color blindness
+d KW: chartjunk
+d 
+d Requires: Stata version 12
+d 
+d Distribution-Date: 20200807
+d 
+d Author: Daniel Bischof, University of Zurich
+d Support: email bischof@@ipz.uzh.ch
+d 
+f b/blindschemes.sthlp
+f s/scheme-plotplain.scheme
+f s/scheme-plotplainblind.scheme
+f s/scheme-plottig.scheme
+f s/scheme-plottigblind.scheme
+f p/plotplain.sthlp
+f p/plotplainblind.sthlp
+f p/plottig.sthlp
+f p/plottigblind.sthlp
+f style/color-vermillion.style
+f style/color-sky.style
+f style/color-reddish.style
+f style/color-orangebrown.style
+f style/color-ananas.style
+f style/color-turquoise.style
+f style/color-sea.style
+f style/color-plb1.style
+f style/color-plb2.style
+f style/color-plb3.style
+f style/color-plg1.style
+f style/color-plg2.style
+f style/color-plg3.style
+f style/color-pll1.style
+f style/color-pll2.style
+f style/color-pll3.style
+f style/color-plr1.style
+f style/color-plr2.style
+f style/color-ply1.style
+f style/color-ply2.style
+f style/color-ply3.style
+e
+S http://fmwww.bc.edu/repec/bocode/e
+N estout.pkg
+D 18 Jan 2024
+U 3
+d 'ESTOUT': module to make regression tables
+d 
+d  estout produces a table of regression results from one or
+d several models for use with spreadsheets, LaTeX, HTML, or a
+d word-processor table. eststo stores a quick copy of the active
+d estimation results for later tabulation. esttab is a wrapper for
+d estout. It displays a pretty looking publication-style regression
+d table without much typing. estadd adds additional results to the
+d e()-returns for one or several models previously fitted and
+d stored. This package subsumes the previously circulated esto,
+d esta, estadd,  and estadd_plus. An earlier version of estout is
+d available  as estout1.
+d 
+d KW: estimates
+d KW: LaTeX
+d KW: HTML
+d KW: word processor
+d KW: output
+d 
+d Requires: Stata version 8.2
+d 
+d Distribution-Date: 20230212
+d 
+d Author: Ben Jann, University of Bern
+d Support: email jann@@soz.unibe.ch
+d 
+f _/_eststo.ado
+f _/_eststo.hlp
+f e/estadd.ado
+f e/estadd.hlp
+f e/estout.ado
+f e/estout.hlp
+f e/eststo.ado
+f e/eststo.hlp
+f e/estpost.ado
+f e/estpost.hlp
+f e/esttab.ado
+f e/esttab.hlp
+e
+S http://fmwww.bc.edu/repec/bocode/c
+N cmp.pkg
+D 18 Jan 2024
+U 4
+d 'CMP': module to implement conditional (recursive) mixed process estimator
+d 
+d  cmp estimates multi-equation, mixed process models, potentially
+d with hierarchical random effects. "Mixed process" means that
+d different equations can have different kinds of dependent
+d variables. The choices are: continuous (like OLS), tobit (left-,
+d right-, or bi-censored), probit, ordered probit or fractional
+d probit. "Conditional" means that the model can vary by
+d observation. An equation can be dropped for observations for
+d which it is not relevant--if, say, a worker retraining program is
+d not offered in a city then the determinants of uptake cannot be
+d modeled there. Or the type of dependent variable can vary by
+d observation. A dependent variable in one equation can appear on
+d the right side of another equation. Such dependencies must have a
+d recursive structure if the dependencies are on censored variables
+d as observed, meaning that they split the equations into stages.
+d If the dependencies are on (latent) linear dependent variables,
+d they can be recursive or simultaneous in structure. So cmp can
+d fit many SUR, simultaneous equation, and IV models. cmp's
+d modeling framework therefore embraces those of the official Stata
+d commands  probit, ivprobit, treatreg, biprobit, tetrachoric,
+d oprobit, mprobit, asmprobit, asroprobit, tobit, ivtobit, cnreg,
+d intreg, truncreg, heckman, heckprob, xtreg, xtprobit, xttobit,
+d xtintreg, in principle even regress, sureg, and reg3. It goes
+d beyond them in offering far more flexibility in model
+d construction. The routine runs under Stata 10 or later, faster
+d under Stata 11.2 or later.
+d 
+d KW: conditional models
+d KW: mixed process modules
+d KW: probit
+d KW: tobit
+d KW: ivtobit
+d KW: biprobit
+d KW: multinomial probit
+d KW: ordered probit
+d KW: truncated regression
+d KW: fractional probit
+d 
+d Requires: Stata version 13 and package ghk2 (q.v.)
+d 
+d Distribution-Date: 20230914
+d 
+d Author: David Roodman
+d Support: email david@@davidroodman.com
+d 
+f c/cmp.ado
+f c/cmp_p.ado
+f c/cmp.sthlp
+f c/cmp.mata
+f l/lcmp.mlib
+f c/cmp_clear.ado
+e
+S http://fmwww.bc.edu/repec/bocode/g
+N ghk2.pkg
+D 18 Jan 2024
+U 5
+d 'GHK2': module (enhanced Mata function) to implement the Geweke-Hajivassiliou-Keane multivariate normal simulator
+d 
+d   ghk2() estimates cumulative multivariate normal probabilities
+d and optionally  computes scores. It is modeled on Stata 10's
+d ghkfast(), using pre-generated draws for speed.  It differs in
+d the following significant respects: (1) It accepts lower as well
+d as upper bounds  of integration. (2) It works in Stata 9. (3) It
+d is an order of magnitude faster than ghkfast()  when the number
+d of observations is high relative to the number of simulation
+d draws per  observation, though it can be slower at the opposite
+d extreme. (4) It does not "pivot" bounds of integration, putting
+d the larger entries toward the end, which somewhat increases  the
+d variability of the simulated probability but eliminates
+d discontinuities in the function  that can otherwise stymie a
+d likelihood search by -ml- when draws are few.
+d 
+d KW: multivariate normal
+d KW: Geweke-Hajivassiliou-Keane
+d KW: Mata
+d 
+d Requires: Stata version 9.2
+d 
+d Distribution-Date: 20210521
+d 
+d Author: David Roodman, Givewell.org
+d Support: email DRoodman@@outlook.com
+d 
+f g/ghk2version.ado
+f g/ghk2.mata
+f g/ghk2.hlp
+f l/lghk2.mlib
+e
+S https://raw.githubusercontent.com/sergiocorreia/ftools/master/src
+N ftools.pkg
+D 18 Jan 2024
+U 6
+d ftools. Alternatives to common Stata commands optimized for large datasets
+d 
+d Author: Sergio Correia. Board of Governors of the Federal Reserve
+d Support: sergio.correia@gmail.com
+d 
+d ftools consists of a Mata file and several Stata commands:
+d 
+d The Mata file creates identifiers (factors) from variables by using
+d hash functions instead of sorting the data, so it runs in time O(N)
+d and not in O(N log N).
+d 
+d The Stata commands exploit this to avoid -sort- operations,
+d at the cost of being slower for small datasets (mainly because of the
+d cost involved in moving data from Stata to Mata).
+d 
+d Implemented commands are fcollapse, fegen group, and fsort.
+d Note that most of the capabilities of -levels- and -contract-
+d are already supported by these commands.
+d 
+d Possible commands include more -egen- functions and -merge- and
+d -reshape- alternatives.
+d 
+d KW: factor variables
+d KW: levels
+d KW: mata
+d KW: collapse
+d KW: contract
+d KW: egen
+d KW: merge
+d KW: levelsof
+d KW: sort
+d KW: inlist
+d 
+d Requires: Stata version 11.2
+d (Stata 12 or older also require the boottest package from ssc)
+d 
+d Distribution-Date: 20230820
+d 
+f f/ftools.ado
+f f/ftools.sthlp
+f f/fcollapse.ado
+f f/fcollapse.sthlp
+f f/fsort.ado
+f f/fsort.sthlp
+f f/fisid.ado
+f f/fisid.sthlp
+f f/fegen.ado
+f f/fegen.sthlp
+f f/fegen_group.ado
+f j/join.ado
+f j/join.sthlp
+f f/fmerge.ado
+f f/fmerge.sthlp
+f f/flevelsof.ado
+f f/flevelsof.sthlp
+f l/local_inlist.ado
+f l/local_inlist.sthlp
+f f/ftools.mata
+f f/ftools_type_aliases.mata
+f f/ftools_common.mata
+f f/ftools_main.mata
+f f/ftools_hash1.mata
+f f/ftools_plugin.mata
+f f/fcollapse_main.mata
+f f/fcollapse_functions.mata
+f m/ms_compile_mata.ado
+f m/ms_get_version.ado
+f m/ms_fvunab.ado
+f m/ms_parse_absvars.ado
+f m/ms_parse_varlist.ado
+f m/ms_parse_vce.ado
+f m/ms_expand_varlist.ado
+f m/ms_add_comma.ado
+f m/ms_fvstrip.ado
+f m/ms_fvstrip.sthlp
+f p/parallel_map.ado
+f p/parallel_map.sthlp
+f p/parallel_map_template.do.ado
+f f/ftab.ado
+e
